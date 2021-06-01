@@ -14,14 +14,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class SystemEventsListener {
 
-    @EventListener
+    @EventListener // navigation to org.springframework.context.support.AbstractApplicationContext.finishRefresh() works
     public void listenContextRefreshedEvent(ContextRefreshedEvent event){
         System.out.println("**********************************");
         System.out.println("got ContextRefreshedEvent");
         System.out.println("**********************************");
     }
 
-    @EventListener(ApplicationStartedEvent.class)
+    @EventListener(ApplicationStartedEvent.class) // navigation to org.springframework.boot.context.event.EventPublishingRunListener.started() works
     public void listenApplicationStartedEvent(){
         System.out.println("**********************************");
         System.out.println("got ApplicationStartedEvent");

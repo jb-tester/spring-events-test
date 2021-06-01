@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class AnnotatedAnotherApplicationEventListener {
 
-    // method is shown as unused - IDEA-270324
+    // method is shown as unused - IDEA-270324 -fixed
     // no navigation between listener and publisher - IDEA-270334
     @AnotherApplicationEventListenerAnnotation
     public void listenAnotherApplicationEvent(){

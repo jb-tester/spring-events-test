@@ -22,7 +22,7 @@ public class AnnotatedAllEventsListener {
         System.out.println("**********************************");
     }
 
-    // method is shown as unused - IDEA-270324
+    // method is shown as unused - IDEA-270324 - fixed
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMPLETION)
     public void handleAllEventsAfterCompletion(ApplicationEvent event){
         System.out.println("**********************************");
