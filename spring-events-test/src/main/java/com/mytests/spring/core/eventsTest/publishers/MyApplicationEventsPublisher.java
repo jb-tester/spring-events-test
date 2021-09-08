@@ -18,22 +18,22 @@ import org.springframework.stereotype.Component;
 public class MyApplicationEventsPublisher {
 
     private final ApplicationEventPublisher publisher;
+    private final ApplicationEventMulticaster multicaster;
     
-    private final ApplicationEventMulticaster applicationEventMulticaster;
     public MyApplicationEventsPublisher(ApplicationEventPublisher publisher,
-                                        ApplicationEventMulticaster applicationEventMulticaster) {
+                                        ApplicationEventMulticaster multicaster) {
         this.publisher = publisher;
-        this.applicationEventMulticaster = applicationEventMulticaster;
+        this.multicaster = multicaster;
     }
 
     @Scheduled(fixedRate = 1000000)
     public void publishEvents(){
 
         publisher.publishEvent(new MyApplicationEvent1(this,"hello!"));
-        applicationEventMulticaster.multicastEvent(new MyApplicationEvent1(this,"multicast hello!"));
+        multicaster.multicastEvent(new MyApplicationEvent1(this,"multicast hello!"));
         publisher.publishEvent(new MyApplicationEvent2(this,"bye!"));
-        applicationEventMulticaster.multicastEvent(new MyApplicationEvent2(this,"multicast bye!"));
+        multicaster.multicastEvent(new MyApplicationEvent2(this,"multicast bye!"));
         publisher.publishEvent(new AnotherApplicationEvent(this));
-        applicationEventMulticaster.multicastEvent(new AnotherApplicationEvent(this));
+        multicaster.multicastEvent(new AnotherApplicationEvent(this));
     }
 }
