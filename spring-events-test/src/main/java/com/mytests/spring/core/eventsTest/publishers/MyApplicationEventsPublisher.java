@@ -15,16 +15,9 @@ import org.springframework.stereotype.Component;
  * *
  */
 @Component
-public class MyApplicationEventsPublisher {
+public record MyApplicationEventsPublisher(ApplicationEventPublisher publisher, ApplicationEventMulticaster multicaster) {
 
-    private final ApplicationEventPublisher publisher;
-    private final ApplicationEventMulticaster multicaster;
-    
-    public MyApplicationEventsPublisher(ApplicationEventPublisher publisher,
-                                        ApplicationEventMulticaster multicaster) {
-        this.publisher = publisher;
-        this.multicaster = multicaster;
-    }
+
 
     @Scheduled(fixedRate = 1000000)
     public void publishEvents(){
