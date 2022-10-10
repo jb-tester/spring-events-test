@@ -6,6 +6,7 @@ import com.mytests.spring.core.eventsTest.events.MyApplicationEvent2;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.scheduling.annotation.Schedules;
 import org.springframework.stereotype.Component;
 
 /**
@@ -18,8 +19,10 @@ import org.springframework.stereotype.Component;
 public record MyApplicationEventsPublisher(ApplicationEventPublisher publisher, ApplicationEventMulticaster multicaster) {
 
 
-
-    @Scheduled(fixedRate = 1000000)
+    @Schedules({
+            @Scheduled(fixedRateString = "${fixed.rate:100}"),
+            @Scheduled(fixedDelayString = "${fixed.delay}")
+    })
     public void publishEvents(){
 
         publisher.publishEvent(new MyApplicationEvent1(this,"hello!"));
